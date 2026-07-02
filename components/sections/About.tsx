@@ -1,64 +1,179 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { portfolio } from "@/data/portfolio";
-import { CheckCircle2 } from "lucide-react";
+import {
+  Briefcase,
+  Building2,
+  Cloud,
+  Cpu,
+  GraduationCap,
+  MapPin,
+  Server,
+  Workflow,
+} from "lucide-react";
+
+import { about } from "@/data/about";
 
 export default function About() {
+  const icons = [
+    Cloud,
+    Server,
+    Workflow,
+    Cpu,
+    Cloud,
+    Workflow,
+    Server,
+    Cpu,
+  ];
+
   return (
     <section
       id="about"
-      className="bg-slate-950 px-6 py-28 text-white"
+      className="bg-slate-950 px-6 py-28"
     >
       <div className="mx-auto max-w-7xl">
+        {/* Heading */}
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: .6 }}
+          className="text-center"
         >
-
-          <p className="font-semibold text-cyan-400">
-            ABOUT ME
+          <p className="font-semibold uppercase tracking-[0.3em] text-cyan-400">
+            About Me
           </p>
 
-          <h2 className="mt-3 text-5xl font-bold">
-            Building Cloud Platforms,
-            <br />
-            not just Deployments.
+          <h2 className="mt-4 text-5xl font-bold text-white">
+            {about.title}
           </h2>
 
-          <p className="mt-8 max-w-4xl text-lg leading-9 text-slate-400">
-            {portfolio.about.description}
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
+            {about.subtitle}
           </p>
-
         </motion.div>
 
-        <div className="mt-20 grid gap-6 md:grid-cols-2">
+        {/* Main Content */}
 
-          {portfolio.expertise.map((item) => (
-            <motion.div
-              key={item}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-lg"
-            >
-              <div className="flex items-center gap-4">
+        <div className="mt-20 grid gap-12 lg:grid-cols-2">
+          {/* Left */}
 
-                <CheckCircle2 className="text-cyan-400" />
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-lg">
+              <h3 className="text-2xl font-bold text-white">
+                Professional Summary
+              </h3>
 
-                <span className="text-lg">
-                  {item}
-                </span>
+              <p className="mt-6 leading-8 text-slate-300">
+                {about.summary}
+              </p>
 
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                {about.highlights.map((item, index) => {
+                  const Icon = icons[index % icons.length];
+
+                  return (
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-slate-900/60 p-4 transition hover:border-cyan-400"
+                    >
+                      <Icon
+                        size={20}
+                        className="text-cyan-400"
+                      />
+
+                      <span className="text-slate-200">{item}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right */}
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 to-slate-800 p-8">
+              <h3 className="text-2xl font-bold text-white">
+                Quick Facts
+              </h3>
+
+              <div className="mt-8 space-y-6">
+                <div className="flex items-center gap-4">
+                  <Building2 className="text-cyan-400" />
+                  <div>
+                    <p className="text-sm text-slate-400">
+                      Current Company
+                    </p>
+                    <p className="font-semibold text-white">
+                      Anvex AI Technology
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <Briefcase className="text-cyan-400" />
+                  <div>
+                    <p className="text-sm text-slate-400">
+                      Current Role
+                    </p>
+                    <p className="font-semibold text-white">
+                      DevOps Engineer
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <GraduationCap className="text-cyan-400" />
+                  <div>
+                    <p className="text-sm text-slate-400">
+                      Education
+                    </p>
+                    <p className="font-semibold text-white">
+                      MCA • GIET University
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <MapPin className="text-cyan-400" />
+                  <div>
+                    <p className="text-sm text-slate-400">
+                      Location
+                    </p>
+                    <p className="font-semibold text-white">
+                      India
+                    </p>
+                  </div>
+                </div>
               </div>
 
-            </motion.div>
-          ))}
+              <div className="mt-10 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-6">
+                <h4 className="text-lg font-bold text-white">
+                  Current Focus
+                </h4>
 
+                <p className="mt-4 leading-7 text-slate-300">
+                  Building scalable Kubernetes platforms, deploying
+                  Large Language Models using vLLM and Hugging Face,
+                  managing NVIDIA GPU infrastructure, optimizing AWS
+                  cloud costs, and automating production deployments.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
+
+        {/* Technology Stack */}
+
 
       </div>
     </section>

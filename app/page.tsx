@@ -1,19 +1,24 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/layout/Navbar";
+import Projects from "@/components/sections/Projects";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
-import TechStack from "@/components/sections/TechStack";
-import AIShowcase from "@/components/sections/AIShowcase";
+import Techstacks from "@/components/sections/Techstacks";
 
 export default function Home() {
   return (
     <>
       <Navbar />
+
       <Hero />
+
       <About />
+
       <Experience />
-      <TechStack />
-      <AIShowcase />
+
+      <Projects />
+
+      <Techstacks />
 
     </>
   );

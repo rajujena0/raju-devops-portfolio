@@ -16,13 +16,13 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         className="relative z-10 max-w-5xl text-center"
       >
-        <p className="mb-4 text-cyan-400 font-semibold">
+        <p className="mb-4 font-semibold text-cyan-400">
           👋 Welcome to my portfolio
         </p>
 
         <h1 className="text-5xl font-extrabold leading-tight md:text-7xl">
-          Hi, I'm{" "}
-          <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          Hi, I&apos;m{" "}
+          <span className="bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
             {portfolio.personal.name}
           </span>
         </h1>
@@ -35,23 +35,23 @@ export default function Hero() {
           {portfolio.personal.subtitle}
         </p>
 
-{/* CTA */}
-<div className="mt-10 flex flex-wrap justify-center gap-4">
-<a
-  href="#projects"
-  className="rounded-xl bg-cyan-500 px-7 py-3 font-semibold text-slate-950 transition hover:scale-105 hover:bg-cyan-400"
->
-  View Projects
-</a>
+        {/* CTA */}
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <a
+            href="#projects"
+            className="rounded-xl bg-cyan-500 px-7 py-3 font-semibold text-slate-950 transition hover:scale-105 hover:bg-cyan-400"
+          >
+            View Projects
+          </a>
 
-  <a
-    href="/resume/Raju_Jena_Final.pdf"
-    download
-    className="rounded-xl border border-cyan-500 px-7 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-500 hover:text-slate-950"
-  >
-    Download Resume
-  </a>
-</div>
+          <a
+            href="/resume/Raju_Jena_Final.pdf"
+            download
+            className="rounded-xl border border-cyan-500 px-7 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-500 hover:text-slate-950"
+          >
+            Download Resume
+          </a>
+        </div>
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">

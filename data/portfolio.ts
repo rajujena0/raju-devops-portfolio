@@ -1,7 +1,7 @@
 export const portfolio = {
   personal: {
     name: "Raju Jena",
-    title: "Cloud, DevOps & AI Infrastructure Engineer",
+    title: "DevOps & AI Infrastructure Engineer",
     subtitle:
       "Building scalable cloud infrastructure, Kubernetes platforms, GPU-powered AI deployments, and production-grade CI/CD pipelines.",
 
