@@ -15,6 +15,7 @@ import BackgroundGrid from "@/components/ui/BackgroundGrid";
 import GitHubProfile from "@/components/sections/GitHubProfile";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import AuroraBackground from "@/components/ui/AuroraBackground";
+import FloatingParticles from "@/components/ui/FloatingParticles";
 
 export default function Home() {
   return (
@@ -24,6 +25,8 @@ export default function Home() {
       <AuroraBackground />
       
       <BackgroundGrid />
+
+      <FloatingParticles />
       
       <ScrollProgress />
 
