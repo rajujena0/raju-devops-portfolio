@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { portfolio } from "@/data/portfolio";
+import { TypeAnimation } from "react-type-animation";
 
 export default function Hero() {
   return (
@@ -27,9 +28,48 @@ export default function Hero() {
           </span>
         </h1>
 
-        <h2 className="mt-6 text-2xl font-semibold text-slate-200">
-          {portfolio.personal.title}
-        </h2>
+
+        <div className="mt-8 flex justify-center">
+
+  <TypeAnimation
+    sequence={[
+      "DevOps Engineer",
+      2000,
+      "Cloud Engineer",
+      2000,
+      "AI Infrastructure Engineer",
+      2000,
+      "Platform Engineer",
+      2000,
+      "Kubernetes Engineer",
+      2000,
+    ]}
+    wrapper="span"
+    speed={45}
+    repeat={Infinity}
+    className="text-2xl font-bold text-cyan-400 md:text-4xl"
+  />
+
+</div>
+<div className="mt-6 flex flex-wrap justify-center gap-3">
+
+  {[
+    "AWS",
+    "Kubernetes",
+    "Docker",
+    "Terraform",
+    "GitHub Actions",
+    "GPU AI",
+  ].map((item) => (
+    <span
+      key={item}
+      className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300"
+    >
+      {item}
+    </span>
+  ))}
+
+</div>
 
         <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
           {portfolio.personal.subtitle}
