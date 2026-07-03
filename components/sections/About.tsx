@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Briefcase,
   Building2,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { about } from "@/data/about";
+import Reveal from "@/components/ui/Reveal";
 
 export default function About() {
   const icons = [
@@ -32,38 +32,34 @@ export default function About() {
       className="bg-slate-950 px-6 py-28"
     >
       <div className="mx-auto max-w-7xl">
+
         {/* Heading */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <p className="font-semibold uppercase tracking-[0.3em] text-cyan-400">
-            About Me
-          </p>
+        <Reveal>
+          <div className="text-center">
+            <p className="font-semibold uppercase tracking-[0.3em] text-cyan-400">
+              About Me
+            </p>
 
-          <h2 className="mt-4 text-5xl font-bold text-white">
-            {about.title}
-          </h2>
+            <h2 className="mt-4 text-5xl font-bold text-white">
+              {about.title}
+            </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
-            {about.subtitle}
-          </p>
-        </motion.div>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
+              {about.subtitle}
+            </p>
+          </div>
+        </Reveal>
 
         {/* Main Content */}
 
         <div className="mt-20 grid gap-12 lg:grid-cols-2">
-          {/* Left */}
 
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+          {/* Left Card */}
+
+          <Reveal direction="left">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-lg">
+
               <h3 className="text-2xl font-bold text-white">
                 Professional Summary
               </h3>
@@ -86,27 +82,28 @@ export default function About() {
                         className="text-cyan-400"
                       />
 
-                      <span className="text-slate-200">{item}</span>
+                      <span className="text-slate-200">
+                        {item}
+                      </span>
                     </div>
                   );
                 })}
               </div>
+
             </div>
-          </motion.div>
+          </Reveal>
 
-          {/* Right */}
+          {/* Right Card */}
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+          <Reveal direction="right" delay={0.2}>
             <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 to-slate-800 p-8">
+
               <h3 className="text-2xl font-bold text-white">
                 Quick Facts
               </h3>
 
               <div className="mt-8 space-y-6">
+
                 <div className="flex items-center gap-4">
                   <Building2 className="text-cyan-400" />
                   <div>
@@ -154,26 +151,28 @@ export default function About() {
                     </p>
                   </div>
                 </div>
+
               </div>
 
               <div className="mt-10 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-6">
+
                 <h4 className="text-lg font-bold text-white">
                   Current Focus
                 </h4>
 
                 <p className="mt-4 leading-7 text-slate-300">
-                  Building scalable Kubernetes platforms, deploying
-                  Large Language Models using vLLM and Hugging Face,
-                  managing NVIDIA GPU infrastructure, optimizing AWS
-                  cloud costs, and automating production deployments.
+                  Building scalable Kubernetes platforms, deploying Large
+                  Language Models using vLLM and Hugging Face, managing
+                  NVIDIA GPU infrastructure, optimizing AWS cloud costs,
+                  and automating production deployments.
                 </p>
+
               </div>
+
             </div>
-          </motion.div>
+          </Reveal>
+
         </div>
-
-        {/* Technology Stack */}
-
 
       </div>
     </section>
