@@ -10,90 +10,174 @@ import {
 import {
   SiKubernetes,
   SiNvidia,
+  SiPrometheus,
+  SiGrafana,
 } from "react-icons/si";
 
-const nodes = [
-  {
-    icon: <FaGithub size={28} />,
-    title: "GitHub",
-  },
-  {
-    icon: <FaDocker size={28} />,
-    title: "Docker",
-  },
-  {
-    icon: <SiKubernetes size={28} />,
-    title: "Self Managed Kubernetes",
-  },
-  {
-    icon: <SiNvidia size={28} />,
-    title: "GPU Nodes",
-  },
-  {
-    icon: "🤗",
-    title: "Hugging Face + vLLM",
-  },
-  {
-    icon: "🧠",
-    title: "Qwen / Gemma Models",
-  },
-  {
-    icon: <FaAws size={28} />,
-    title: "AWS Infrastructure",
-  },
-];
+import {
+  GitBranch,
+  Cpu,
+  Server,
+  Activity,
+  Database,
+} from "lucide-react";
+
+import SectionTitle from "@/components/ui/SectionTitle";
+
+import ArchitectureBox from "@/components/architecture/ArchitectureBox";
+import ArchitectureArrow from "@/components/architecture/ArchitectureArrow";
+import ArchitectureCluster from "@/components/architecture/ArchitectureCluster";
+import ArchitectureLabel from "@/components/architecture/ArchitectureLabel";
 
 export default function AIShowcase() {
   return (
-    <section className="bg-slate-950 py-32 px-6">
-
+    <section
+      id="architecture"
+      className="bg-slate-900 py-28 px-6"
+    >
       <div className="mx-auto max-w-7xl">
 
-        <p className="text-cyan-400 font-semibold">
-          AI INFRASTRUCTURE
-        </p>
+        <SectionTitle
+          eyebrow="AI INFRASTRUCTURE"
+          title="Production AI Deployment Architecture"
+          subtitle="Representative architecture based on the technologies I use for deploying AI inference workloads."
+        />
 
-        <h2 className="text-5xl font-bold mt-3 text-white">
-          Production AI Deployment Architecture
-        </h2>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
 
-        <p className="mt-6 max-w-3xl text-slate-400 text-lg">
-          A simplified representation of the deployment workflow
-          I work with for GPU-powered AI applications.
-        </p>
+          <div className="flex flex-col items-center">
 
-        <div className="mt-20 flex flex-col items-center">
+            <ArchitectureBox
+              title="GitHub Repository"
+              icon={<FaGithub />}
+            />
 
-          {nodes.map((item, index) => (
+            <ArchitectureArrow />
 
-            <motion.div
-              key={index}
-              initial={{ opacity:0, y:30 }}
-              whileInView={{ opacity:1, y:0 }}
-              viewport={{ once:true }}
-              transition={{ delay:index*.15 }}
-              className="mb-6 w-full max-w-md rounded-2xl border border-cyan-500/20 bg-slate-900 p-6"
-            >
-              <div className="flex items-center gap-4">
+            <ArchitectureBox
+              title="GitHub Actions CI/CD"
+              icon={<GitBranch />}
+            />
 
-                <div className="text-cyan-400">
-                  {item.icon}
-                </div>
+            <ArchitectureArrow />
 
-                <h3 className="text-xl text-white font-semibold">
-                  {item.title}
-                </h3>
+            <ArchitectureBox
+              title="Docker Build"
+              icon={<FaDocker />}
+            />
+
+            <ArchitectureArrow />
+
+            <ArchitectureBox
+              title="AWS Infrastructure"
+              icon={<FaAws />}
+            />
+
+            <ArchitectureArrow />
+
+            <ArchitectureCluster title="Self Managed Kubernetes Cluster">
+
+              <div className="grid gap-6 md:grid-cols-2">
+
+                <ArchitectureBox
+                  title="NGINX Ingress"
+                  icon={<SiKubernetes />}
+                />
+
+                <ArchitectureBox
+                  title="API Gateway"
+                  icon={<Server />}
+                />
+
+                <ArchitectureBox
+                  title="vLLM Inference"
+                  icon={<Cpu />}
+                />
+
+                <ArchitectureBox
+                  title="Hugging Face"
+                  icon={<Database />}
+                />
 
               </div>
 
-            </motion.div>
+            </ArchitectureCluster>
 
-          ))}
+            <ArchitectureArrow />
+
+            <ArchitectureBox
+              title="NVIDIA GPU Nodes"
+              icon={<SiNvidia />}
+            />
+
+            <ArchitectureArrow />
+
+            <ArchitectureBox
+              title="Qwen / Gemma Models"
+              icon={"🧠"}
+            />
+
+          </div>
+
+        </motion.div>
+
+        <div className="mt-16">
+
+          <ArchitectureLabel>
+            Monitoring Stack
+          </ArchitectureLabel>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+
+            <ArchitectureBox
+              title="Prometheus"
+              icon={<SiPrometheus />}
+            />
+
+            <ArchitectureBox
+              title="Grafana"
+              icon={<SiGrafana />}
+            />
+
+          </div>
+
+        </div>
+
+        <div className="mt-16 rounded-3xl border border-cyan-500/20 bg-slate-950 p-10">
+
+          <h3 className="text-2xl font-bold text-white">
+            Current Responsibilities
+          </h3>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+
+            {[
+              "Deploying GPU-based AI models on AWS",
+              "Managing Self-Managed Kubernetes clusters",
+              "Deploying Hugging Face & vLLM inference servers",
+              "Working with NVIDIA A100, L40 and L40S GPUs",
+              "Optimizing AWS cloud costs",
+              "Automating CI/CD pipelines",
+              "Containerizing workloads with Docker",
+              "Monitoring production systems using Prometheus & Grafana",
+            ].map((item) => (
+              <div
+                key={item}
+                className="rounded-xl border border-white/10 bg-slate-900 p-4 text-slate-300"
+              >
+                ✓ {item}
+              </div>
+            ))}
+
+          </div>
 
         </div>
 
       </div>
-
     </section>
   );
 }
