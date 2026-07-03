@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { portfolio } from "@/data/portfolio";
 import { TypeAnimation } from "react-type-animation";
+import { Circle } from "lucide-react";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 export default function Hero() {
   return (
@@ -20,6 +22,24 @@ export default function Hero() {
         <p className="mb-4 font-semibold text-cyan-400">
           👋 Welcome to my portfolio
         </p>
+        <motion.div
+  initial={{ opacity: 0, y: -10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.1 }}
+  className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 backdrop-blur-md"
+>
+  <span className="relative flex h-3 w-3">
+    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+    <Circle
+      className="relative h-3 w-3 fill-emerald-400 text-emerald-400"
+      strokeWidth={0}
+    />
+  </span>
+
+  <span className="text-sm font-medium text-emerald-300">
+    Available for Full-Time Opportunities
+  </span>
+</motion.div>
 
         <h1 className="text-5xl font-extrabold leading-tight md:text-7xl">
           Hi, I&apos;m{" "}
@@ -100,9 +120,15 @@ export default function Hero() {
               key={stat.title}
               className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md"
             >
-              <h3 className="text-3xl font-bold text-cyan-400">
-                {stat.value}
-              </h3>
+<h3 className="text-3xl font-bold text-cyan-400">
+  <AnimatedCounter
+  end={stat.end}
+  duration={2000}
+  decimals={stat.decimals}
+  prefix={stat.prefix}
+  suffix={stat.suffix}
+/>
+</h3>
 
               <p className="mt-2 text-sm text-slate-400">
                 {stat.title}

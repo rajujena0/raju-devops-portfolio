@@ -3,7 +3,7 @@ import Projects from "@/components/sections/Projects";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
-import Techstacks from "@/components/sections/Techstacks";
+// import Techstacks from "@/components/sections/Techstacks";
 import GithubStats from "@/components/sections/GithubStats";
 import AIShowcase from "@/components/sections/AIShowcase";
 import Certifications from "@/components/sections/Certifications";
@@ -16,6 +16,9 @@ import GitHubProfile from "@/components/sections/GitHubProfile";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import AuroraBackground from "@/components/ui/AuroraBackground";
 import FloatingParticles from "@/components/ui/FloatingParticles";
+import CustomCursor from "@/components/ui/CustomCursor";
+import MouseTrail from "@/components/ui/MouseTrail";
+import TechMarquee from "@/components/sections/TechMarquee";
 
 export default function Home() {
   return (
@@ -31,6 +34,10 @@ export default function Home() {
       <ScrollProgress />
 
       <MouseGlow />
+
+      <CustomCursor />
+
+      <MouseTrail />
       
       <Navbar />
 
@@ -40,7 +47,9 @@ export default function Home() {
 
       <Experience />
 
-      <Techstacks />
+      <TechMarquee />
+
+      {/* <Techstacks /> */}
 
       <Projects />
 

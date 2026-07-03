@@ -17,26 +17,32 @@ export const portfolio = {
   },
 
   heroStats: [
-    {
-      title: "Cloud Savings",
-      value: "$177K+",
-    },
-
-    {
-      title: "System Uptime",
-      value: "99.9%",
-    },
-
-    {
-      title: "Deployment Speed",
-      value: "65%",
-    },
-
-    {
-      title: "Experience",
-      value: "2.6+ Yrs",
-    },
-  ],
+  {
+    title: "Cloud Savings",
+    end: 177,
+    prefix: "$",
+    suffix: "K+",
+    decimals: 0,
+  },
+  {
+    title: "System Uptime",
+    end: 99.9,
+    suffix: "%",
+    decimals: 1,
+  },
+  {
+    title: "Deployment Speed",
+    end: 65,
+    suffix: "%",
+    decimals: 0,
+  },
+  {
+    title: "Experience",
+    end: 2.6,
+    suffix: "+ Years",
+    decimals: 1,
+  },
+],
 technologies: [
   "AWS",
   "Docker",

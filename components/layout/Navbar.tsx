@@ -19,47 +19,44 @@ export default function Navbar() {
   const [active, setActive] = useState("home");
 
   useEffect(() => {
-    const onScroll = () => {
+    const handleScroll = () => {
+      // Navbar background
       setScrolled(window.scrollY > 20);
+
+      // Active section
+      const sections = [
+        "home",
+        "about",
+        "experience",
+        "skills",
+        "projects",
+        "architecture",
+        "github",
+        "contact",
+      ];
+
+      const scrollPosition = window.scrollY + window.innerHeight * 0.35;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+
+        if (!section) continue;
+
+        if (scrollPosition >= section.offsetTop) {
+          setActive(sections[i]);
+          break;
+        }
+      }
     };
 
-    window.addEventListener("scroll", onScroll);
+    handleScroll();
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = [
-      "home",
-      "about",
-      "experience",
-      "skills",
-      "projects",
-      "architecture",
-      "github",
-      "contact",
-    ];
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.45,
-      }
-    );
-
-    sections.forEach((id) => {
-      const section = document.getElementById(id);
-
-      if (section) observer.observe(section);
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
     });
 
-    return () => observer.disconnect();
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -71,6 +68,7 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        {/* Logo */}
         <a
           href="#home"
           className="text-2xl font-bold text-white"
@@ -78,6 +76,7 @@ export default function Navbar() {
           Raju<span className="text-cyan-400">.</span>
         </a>
 
+        {/* Desktop */}
         <nav className="hidden items-center gap-2 md:flex">
           {navItems.map((item) => {
             const isActive =
@@ -95,23 +94,29 @@ export default function Navbar() {
               >
                 {item.label}
 
-                {isActive && (
-                  <span className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-cyan-400" />
-                )}
+                <span
+                  className={`absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-cyan-400 transition-all duration-300 ${
+                    isActive
+                      ? "opacity-100 scale-x-100"
+                      : "opacity-0 scale-x-0"
+                  }`}
+                />
               </a>
             );
           })}
         </nav>
 
+        {/* Resume Button */}
         <a
           href="/resume/Raju_Jena_Final.pdf"
           download
-          className="hidden items-center gap-2 rounded-xl bg-cyan-500 px-5 py-2 font-semibold text-slate-950 transition hover:bg-cyan-400 md:flex"
+          className="hidden items-center gap-2 rounded-xl bg-cyan-500 px-5 py-2 font-semibold text-slate-950 transition hover:scale-105 hover:bg-cyan-400 md:flex"
         >
           <Download size={18} />
           Resume
         </a>
 
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-white md:hidden"
@@ -120,23 +125,29 @@ export default function Navbar() {
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="border-t border-white/10 bg-slate-950 md:hidden">
           <div className="flex flex-col p-6">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className={`rounded-lg px-3 py-3 transition ${
-                  active === item.href.replace("#", "")
-                    ? "bg-cyan-500/10 text-cyan-400"
-                    : "text-slate-300"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive =
+                active === item.href.replace("#", "");
+
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`rounded-lg px-3 py-3 transition ${
+                    isActive
+                      ? "bg-cyan-500/10 text-cyan-400"
+                      : "text-slate-300"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
 
             <a
               href="/resume/Raju_Jena_Final.pdf"
