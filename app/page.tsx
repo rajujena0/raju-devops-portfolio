@@ -14,11 +14,14 @@ import MouseGlow from "@/components/ui/MouseGlow";
 import BackgroundGrid from "@/components/ui/BackgroundGrid";
 import GitHubProfile from "@/components/sections/GitHubProfile";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import AuroraBackground from "@/components/ui/AuroraBackground";
 
 export default function Home() {
   return (
     <>
       <LoadingScreen />
+
+      <AuroraBackground />
       
       <BackgroundGrid />
       
