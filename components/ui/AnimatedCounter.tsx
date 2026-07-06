@@ -17,43 +17,61 @@ export default function AnimatedCounter({
   prefix = "",
   suffix = "",
 }: AnimatedCounterProps) {
-  const [value, setValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
+
+  const [value, setValue] = useState(0);
 
   useEffect(() => {
+    const element = ref.current;
+
+    if (!element) return;
+
+    let animationFrame = 0;
+
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting || started.current) return;
-
-        started.current = true;
+        if (!entry.isIntersecting) return;
 
         let startTime: number | null = null;
+
+        // Reset every time it enters the viewport
+        setValue(0);
 
         const animate = (timestamp: number) => {
           if (!startTime) startTime = timestamp;
 
-          const progress = Math.min((timestamp - startTime) / duration, 1);
+          const progress = Math.min(
+            (timestamp - startTime) / duration,
+            1
+          );
 
-          setValue(progress * end);
+          const eased = easeOutCubic(progress);
+
+          setValue(eased * end);
 
           if (progress < 1) {
-            requestAnimationFrame(animate);
+            animationFrame = requestAnimationFrame(animate);
           } else {
             setValue(end);
           }
         };
 
-        requestAnimationFrame(animate);
+        cancelAnimationFrame(animationFrame);
+        animationFrame = requestAnimationFrame(animate);
       },
       {
-        threshold: 0.4,
+        threshold: 0.45,
       }
     );
 
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(element);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(animationFrame);
+    };
   }, [duration, end]);
 
   return (
