@@ -68,7 +68,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/opengraph-image",
+        url: "/public/profile.jpg",
         width: 1200,
         height: 630,
         alt: "Raju Jena Portfolio",

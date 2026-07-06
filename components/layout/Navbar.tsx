@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X, Download } from "lucide-react";
+import Link from "next/link";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -69,12 +70,13 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <a
-          href="#home"
-          className="text-2xl font-bold text-white"
-        >
-          Raju<span className="text-cyan-400">.</span>
-        </a>
+ <Link
+  href="/#home"
+  onClick={() => setMobileOpen(false)}
+  className="text-2xl font-bold text-white transition hover:text-cyan-300"
+>
+  Raju<span className="text-cyan-400">.</span>
+</Link>
 
         {/* Desktop */}
         <nav className="hidden items-center gap-2 md:flex">

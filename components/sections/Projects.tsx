@@ -10,26 +10,44 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="bg-slate-950 px-6 py-28"
+      className="bg-slate-950 px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 sm:py-24 lg:py-28"
     >
       <div className="mx-auto max-w-7xl">
         <SectionTitle
-          eyebrow="Projects"
+          eyebrow="PROJECTS"
           title="Featured Engineering Projects"
           subtitle="Cloud, Kubernetes and AI infrastructure projects demonstrating production-ready DevOps practices."
         />
 
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.15,
+              initial={{
+                opacity: 0,
+                y: 60,
+                scale: 0.95,
               }}
-              viewport={{ once: true }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+              }}
+              viewport={{
+                once: false,
+                amount: 0.25,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.12,
+                ease: "easeOut",
+              }}
+              whileHover={{
+                y: -8,
+                transition: {
+                  duration: 0.25,
+                },
+              }}
             >
               <ProjectCard
                 title={project.title}
